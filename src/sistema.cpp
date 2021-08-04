@@ -17,6 +17,10 @@ void Sistema::adduser(Usuario a){
 	a.set_id(usuarios.size());
 }
 
+std::vector <Usuario> Sistema::get_usuarios(){
+	return usuarios;
+}
+
 string Sistema::create_user (const string email, const string senha, const string nome) {
 	Usuario user;
 	user.set_name(nome);
@@ -145,19 +149,65 @@ string Sistema::remove_server(int id, const string nome) {
 }
 
 string Sistema::enter_server(int id, const string nome, const string codigo) {
-  return "enter_server NÃO IMPLEMENTADO";
+	if (usuariosLogados.count(id) == 0) {
+		return "Usuario não está logado";
+	}
+	for(auto &b : servidores){
+		if(b.get_nameserver() == nome && b.get_convite() == ""){
+			b.addpartids(id);
+			usuariosLogados[id].first = nome;
+			return "Entrou no servidor com sucesso";
+		}
+		else if(b.get_nameserver() == nome && b.get_convite() != ""){
+			if(b.get_convite() == codigo || b.get_donoid() == id){
+				b.addpartids(id);
+				usuariosLogados[id].first = nome;
+				return "Entrou no servidor com sucesso";
+			}
+			return "Servidor requer código de convite";
+		}
+	}
+  return "Servidor Não foi encontrado";
 }
 
 string Sistema::leave_server(int id, const string nome) {
-  return "leave_server NÃO IMPLEMENTADO";
+	if (usuariosLogados.count(id) == 0) {
+		return "Usuario não está logado";
+	}
+	for(auto &w : servidores){
+		if(w.get_nameserver() == nome){
+			w.rmpartids(id);
+			return "Saindo do servidor " + nome;
+		}
+		if(w.checkidlist(id) == 0){
+			return "Você não está no servidor " + nome;
+		}
+	}
+  return "Você não está em qualquer servidor";
 }
 
 string Sistema::list_participants(int id) {
-  return "list_participants NÃO IMPLEMENTADO";
+	if (usuariosLogados.count(id) == 0) {
+		return "Usuario não está logado";
+	}
+	for(auto &q : servidores){
+		if(usuariosLogados[id].first == q.get_nameserver()){
+			return q.searchlistid(get_usuarios());
+		}
+	}
+  return "Não há pessoas no servidor procurado";
 }
 
 string Sistema::list_channels(int id) {
-  return "list_channels NÃO IMPLEMENTADO";
+	if (usuariosLogados.count(id) == 0) {
+		return "Usuario não está logado";
+	}
+	for(auto &v : servidores){
+		if(usuariosLogados[id].first == v.get_nameserver()){
+			return v.searchchanels();
+		}
+	}
+  return "Não existe canais no servidor";
 }
 
 string Sistema::create_channel(int id, const string nome) {

@@ -1,0 +1,15 @@
+create-user julio.melo@imd.ufrn.br 12ab34cd Julio Melo
+login julio.melo@imd.ufrn.br 12ab34cd
+create-server 0 minha-casa
+enter-server 0 minha-casa
+create-user penistenis@gmail.com.br sexo123 Eberaldo Neto
+login penistenis@gmail.com.br sexo123
+create-user galvaogabriel@gmail.com ggrc1508 Gabriel Costa
+login galvaogabriel@gmail.com ggrc1508
+create-user gustavoferreira@hotmail.com gus980 Gustavo Ferreira
+login gustavoferreira@hotmail.com gus980
+enter-server 3 minha-casa
+enter-server 2 minha-casa
+list-participants 0
+list-channels 0
+list-channels 1

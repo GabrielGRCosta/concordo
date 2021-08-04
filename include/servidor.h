@@ -2,6 +2,7 @@
 #define SERVIDOR_H
 #include <string>
 #include <vector>
+#include "canaltexto.h"
 using namespace std;
 
 class Servidor{
@@ -10,7 +11,7 @@ class Servidor{
 	string nome;
 	string descricao;
 	string codigoConvite;
-	vector <string> CanaisTexto;
+	vector <CanalTexto> CanaisTexto;
 	vector <int> participantesIDs; 
 
   public:
@@ -26,6 +27,18 @@ class Servidor{
 	string get_nameserver();
 
 	int get_donoid();
+
+	string get_convite();
+
+	void addpartids(int id);
+
+	void rmpartids(int id);
+
+	int checkidlist(int id);
+
+	string searchlistid(vector<Usuario> usuarios);
+
+	string searchchanels();
 
 
 };

@@ -26,6 +26,8 @@ class Sistema {
 
 		void adduser(Usuario a);
 
+		std::vector <Usuario> get_usuarios();
+
 		/*! Cria um usuário e retorna uma string de erro/sucesso 
 				@param email o email do usuário informado no comando create-user
 				@param senha a senha passada ao comando create-ser
