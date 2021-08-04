@@ -7,9 +7,16 @@ login penistenis@gmail.com.br sexo123
 create-user galvaogabriel@gmail.com ggrc1508 Gabriel Costa
 login galvaogabriel@gmail.com ggrc1508
 create-user gustavoferreira@hotmail.com gus980 Gustavo Ferreira
-login gustavoferreira@hotmail.com gus980
+login gustavoferreira@hotmail.com gus980//ok
 enter-server 3 minha-casa
 enter-server 2 minha-casa
-list-participants 0
-list-channels 0
-list-channels 1
+list-participants 0//ok
+create-channel 0 juliao
+create-channel 1 cringe
+create-channel 2 davigay
+create-channel 2 pepapig
+list-channels 2
+enter-channel 0 juliao
+enter-channel 1 juliao
+enter-channel 2 juliao
+enter-channel 15 juliao

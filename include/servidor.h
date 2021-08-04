@@ -40,6 +40,9 @@ class Servidor{
 
 	string searchchanels();
 
+	int checknameCH(string name);
+
+	void addChanels(CanalTexto Channel);
 
 };
 

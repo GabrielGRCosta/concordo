@@ -13,6 +13,7 @@ class CanalTexto{
 
 	public:
 	string get_namechanel();
+	void set_namechanel(string name);
 };
 
 #endif

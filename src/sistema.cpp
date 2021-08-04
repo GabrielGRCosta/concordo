@@ -13,8 +13,8 @@ string Sistema::quit() {
 }
 
 void Sistema::adduser(Usuario a){
-	usuarios.push_back(a);
 	a.set_id(usuarios.size());
+  	usuarios.push_back(a);
 }
 
 std::vector <Usuario> Sistema::get_usuarios(){
@@ -199,7 +199,7 @@ string Sistema::list_participants(int id) {
 }
 
 string Sistema::list_channels(int id) {
-	if (usuariosLogados.count(id) == 0) {
+	if(usuariosLogados.count(id) == 0) {
 		return "Usuario não está logado";
 	}
 	for(auto &v : servidores){
@@ -210,12 +210,48 @@ string Sistema::list_channels(int id) {
   return "Não existe canais no servidor";
 }
 
-string Sistema::create_channel(int id, const string nome) {
-  return "create_channel NÃO IMPLEMENTADO";
+string Sistema::create_channel(int id, const string nome) {		
+  if(usuariosLogados.count(id) == 0) {
+		return "Usuario não está logado";
+  }
+  if(usuariosLogados[id].first == ""){
+		return "Usuário não está em um servidor";
+	}
+  CanalTexto Canal;
+  Canal.set_namechanel(nome);
+  for(auto &w : servidores){
+	if(w.checknameCH(nome) == 1){
+		return "Canal com esse nome já existe";
+	}
+  }
+  for(int v=0; v<servidores.size(); v++){
+	if(servidores[v].get_nameserver() == usuariosLogados[id].first )
+	  	servidores[v].addChanels(Canal);
+  }
+  return "Foi criado o canal " + nome;
 }
 
 string Sistema::enter_channel(int id, const string nome) {
-  return "enter_channel NÃO IMPLEMENTADO";
+  string usu;	
+  if(usuariosLogados.count(id) == 0) {
+		return "Usuario não está logado";
+  }
+  Servidor save;
+  for(auto &j :usuarios){
+	  if(j.get_id() == id){
+		  usu = j.get_email();
+	  }
+  }
+  for(auto &k : servidores){
+  	if(k.checknameCH(nome) == 1 && k.checkidlist(id) == 1){
+		usuariosLogados[id].second = nome;
+		return "Usuário " + usu, "entrou no canal " +nome;	  
+	}
+	else if(k.checkidlist(id) == 0){
+		return "Usuário não está no servidor";
+	}	
+  }
+  return "O canal não existe";
 }
 
 string Sistema::leave_channel(int id) {

@@ -84,3 +84,16 @@ string Servidor::searchchanels(){
 	}
 	return sharp.str();
 }
+
+int Servidor::checknameCH(string name){
+	for(int b=0; b<CanaisTexto.size(); b++){
+		if(CanaisTexto[b].get_namechanel() == name){
+			return 1;
+		}
+	}
+	return 0;
+}
+
+void Servidor::addChanels(CanalTexto Channel){
+	CanaisTexto.push_back(Channel);
+}
