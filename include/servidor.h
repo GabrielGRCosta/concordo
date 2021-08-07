@@ -44,6 +44,10 @@ class Servidor{
 
 	void addChanels(CanalTexto Channel);
 
+	string requestlistm(vector<Usuario> &usuarios,string canal);
+
+	void requestsendm(string canal, string mensagem, int id);
+
 };
 
 

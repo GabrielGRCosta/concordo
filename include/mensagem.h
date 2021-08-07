@@ -6,10 +6,18 @@
 #include <string.h>
 using namespace std;
 
-class mensagem{
+class Mensagem{
+	private:
 	int enviadaPor;
 	string conteudo;
 	string dataHora;
+
+	public:
+	Mensagem(int enviadaPor, string conteudo);
+	string get_datahora();
+	string get_conteudo();
+	int get_enviadaPor();
+	string printm(string m);
 };
 
 #endif

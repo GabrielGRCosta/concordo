@@ -97,3 +97,20 @@ int Servidor::checknameCH(string name){
 void Servidor::addChanels(CanalTexto Channel){
 	CanaisTexto.push_back(Channel);
 }
+
+string Servidor::requestlistm(vector<Usuario> & usuarios,string canal){
+	for(auto &p : CanaisTexto){
+		if(p.get_namechanel() == canal){
+		  return p.listm(usuarios);
+		}
+	}
+	return "Erro";
+}
+
+void Servidor::requestsendm(string canal, string mensagem, int id){
+	for(auto &k : CanaisTexto){
+		if(k.get_namechanel() == canal){
+			 k.sendm(mensagem, id);
+		}
+	}
+}

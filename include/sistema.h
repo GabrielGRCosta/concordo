@@ -24,6 +24,8 @@ class Sistema {
 		*/
 		std::string quit();
 
+		int treatment(string a, string b , string c);
+
 		void adduser(Usuario a);
 
 		std::vector <Usuario> get_usuarios();
